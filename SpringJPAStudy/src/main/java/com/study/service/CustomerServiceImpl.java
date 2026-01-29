@@ -2,6 +2,7 @@ package com.study.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
@@ -16,12 +17,13 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class CustomerServiceImpl implements CustomerService{
 	
+	@Autowired
 	private CustomerRepository customerRepository;
 	
 	@Override
 	public int register(Customer c) throws Exception {
 		Customer customer = customerRepository.save(c);
-		return customer != null ? 1 : 0;
+		return (customer != null) ? 1 : 0;
 	}
 
 	@Override
