@@ -166,13 +166,13 @@ body {
 		</div>
 
 		<div class="btn-group">
-			<a href="/customer/editForm?no=${customer.no}" class="btn btn-edit">기록
+			<a href="/customer/updateForm?no=${customer.no}" class="btn btn-edit">회원
 				수정</a>
+			<a href="/customer/delete?no=${customer.no}" class="btn btn-withdraw">회원
+				탈퇴</a>
 
-			<button type="button" onclick="confirmWithdraw()"
-				class="btn btn-withdraw">환자 탈퇴</button>
 
-			<a href="/customer/list" class="btn btn-list">목록으로</a>
+			<a href="/customer/customerList" class="btn btn-list">목록으로</a>
 		</div>
 	</div>
 

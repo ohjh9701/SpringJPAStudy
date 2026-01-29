@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.study.domain.Customer;
 import com.study.service.CustomerService;
 
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -77,5 +76,56 @@ public class CustomerController {
 	}
 	
 	
+	
+	@GetMapping("/delete")
+	public String remove(Customer customer, Model model) {
+		log.info("boardDetail board = "+customer.toString());
+		
+		try {
+			int count = customerService.remove(customer);
+			if(count > 0) {
+				model.addAttribute("coment", "%d 님의 정보가 삭제되었습니다.".formatted(customer.getNo()));
+				return "customer/success";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("coment", "%d 님의 정보 삭제가 실패하였습니다.".formatted(customer.getNo()));
+		return "customer/failed";
+	}
+	
+	@GetMapping("/updateForm")
+	public String UpdateForm(Customer c, Model model) {
+		log.info("updateForm board = "+c.toString());
+		
+		try {
+			Customer customer = customerService.read(c);
+			if(customer == null) {
+				model.addAttribute("coment", "%d 님의 정보가 없습니다".formatted(c.getNo()));
+				return "customer/failed";
+			}
+			model.addAttribute("Customer", customer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "customer/updateForm";
+	}
+	
+	@PostMapping("/update")
+	public String update(Model model, Customer customer) {
+		log.info("updateBoard board = "+customer.toString());
+		
+		try {
+			int count = customerService.modify(customer);
+			if(count > 0) {
+				model.addAttribute("message", "%d 님의 정보가 수정되었습니다.".formatted(customer.getNo()));
+				return "customer/success";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("message", "%d 님의 정보가 수정되지 않았습니다.".formatted(customer.getNo()));
+		return "customer/failed";
+	}
 	
 }
