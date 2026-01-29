@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.board.domain.Board;
 import com.study.domain.Customer;
 import com.study.service.CustomerService;
 
