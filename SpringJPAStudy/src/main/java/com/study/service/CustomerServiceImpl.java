@@ -66,11 +66,11 @@ public class CustomerServiceImpl implements CustomerService{
 	@Transactional(readOnly = true)
 	public List<Customer> search(String searchType, String keyword) throws Exception {
 		//searchType = {ID, NAME, EMAIL}
-		if(searchType.equals("content")) {
+		if(searchType.equals("id")) {
 			return customerRepository.findByIdContaining(keyword);
-		} else if(searchType.equals("writer")) {
+		} else if(searchType.equals("name")) {
 			return customerRepository.findByNameContaining(keyword);
-		} else if(searchType.equals("title")) {
+		} else if(searchType.equals("email")) {
 			return customerRepository.findByEmailContaining(keyword);
 		} else {
 			return customerRepository.findByIdContaining(keyword);

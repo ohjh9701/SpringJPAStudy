@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.board.domain.Board;
 import com.study.domain.Customer;
 import com.study.service.CustomerService;
 
@@ -126,6 +127,21 @@ public class CustomerController {
 		}
 		model.addAttribute("message", "%d 님의 정보가 수정되지 않았습니다.".formatted(customer.getNo()));
 		return "customer/failed";
+	}
+	
+	@GetMapping("/search")
+	public String customerSearch(Model model, String searchType, String keyword) {
+		
+		try {
+			List<Customer> customerList = customerService.search(searchType, keyword);
+			
+			model.addAttribute("customerList",customerList);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "customer/customerList";
 	}
 	
 }
