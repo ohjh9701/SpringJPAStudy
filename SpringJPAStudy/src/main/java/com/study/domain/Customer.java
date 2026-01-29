@@ -19,12 +19,13 @@ import lombok.Data;
 		)
 @Table(name = "CUSTOMER")
 public class Customer {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CUSTOMER_SEQ_GEN")
 	@Column(name = "NO")
 	long no;
 	
-	@Column(name = "ID")
+	@Column(name = "ID", unique = true, nullable = false)
 	String id;
 	
 	@Column(name = "PASSWORD")

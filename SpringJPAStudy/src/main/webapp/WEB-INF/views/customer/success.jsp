@@ -20,7 +20,7 @@
     <div class="icon">✓</div>
     <h2>정상 등록되었습니다.</h2>
     <p>${coment}<br>건강한 쇼핑의 시작, 메디컬 샵입니다.</p>
-    <a href="/customer/loginForm" class="btn">로그인 하러가기</a>
+    <a href="/customer/customerList" class="btn">회원리스트 이동</a>
 </div>
 
 </body>

@@ -21,6 +21,7 @@ public class CustomerServiceImpl implements CustomerService{
 	private CustomerRepository customerRepository;
 	
 	@Override
+	@Transactional
 	public int register(Customer c) throws Exception {
 		Customer customer = customerRepository.save(c);
 		return (customer != null) ? 1 : 0;
@@ -28,10 +29,11 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public Customer read(Customer c) throws Exception {
-		return customerRepository.getReferenceById(c.getNo());
+		return customerRepository.findById(c.getNo()).orElse(null);
 	}
 
 	@Override
+	@Transactional
 	public int modify(Customer c) throws Exception {
 		Customer customer = customerRepository.getReferenceById(c.getNo());
 		customer.setName(c.getName());
@@ -42,6 +44,7 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
+	@Transactional
 	public int remove(Customer customer) throws Exception {
 		int count = 1;
 		try {
